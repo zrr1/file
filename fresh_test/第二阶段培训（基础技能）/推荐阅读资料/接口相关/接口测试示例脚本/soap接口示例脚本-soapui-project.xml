@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="10.131.8" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CommonMessageFacadeImplServiceSoapBinding" type="wsdl" bindingName="{http://internal.interfaces.auth.springtour.com/}CommonMessageFacadeImplServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://10.131.8.61:8080/cms/cxf/webservices/commonMessageService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://10.131.8.61:8080/cms/cxf/webservices/commonMessageService?wsdl"><con:part><con:url>http://10.131.8.61:8080/cms/cxf/webservices/commonMessageService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CommonMessageFacadeImplService" targetNamespace="http://internal.interfaces.auth.springtour.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://internal.interfaces.auth.springtour.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://interfaces.auth.springtour.com/">
+  <wsdl:import location="http://10.131.8.61:8080/cms/cxf/webservices/commonMessageService?wsdl=CommonMessageServiceFacade.wsdl" namespace="http://interfaces.auth.springtour.com/"></wsdl:import>
+  <wsdl:binding name="CommonMessageFacadeImplServiceSoapBinding" type="ns1:CommonMessageServiceFacade">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="queryUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="queryUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="queryUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryCompany">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="queryCompany">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="queryCompanyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryCity">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="queryCity">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="queryCityResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommonMessageFacadeImplService">
+    <wsdl:port binding="tns:CommonMessageFacadeImplServiceSoapBinding" name="CommonMessageFacadeImplPort">
+      <soap:address location="http://10.131.8.61:8080/cms/cxf/webservices/commonMessageService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://10.131.8.61:8080/cms/cxf/webservices/commonMessageService?wsdl=CommonMessageServiceFacade.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CommonMessageServiceFacade" targetNamespace="http://interfaces.auth.springtour.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://interfaces.auth.springtour.com/">
+  <wsdl:types>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://dto.common.app.springtour.com" xmlns:tns="http://dto.common.app.springtour.com">
+      <xsd:complexType name="ArrayOfUserDTO">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="UserDTO" nillable="true" type="tns:UserDTO"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="UserDTO">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="departmentId" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="departmentName" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="id" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="name" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="trueName" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://shared.app.springtour.com" xmlns:tns="http://shared.app.springtour.com">
+      <xsd:complexType name="User">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="ip" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="userId" nillable="true" type="xsd:long"/>
+          <xsd:element minOccurs="0" name="userName" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="userTrueName" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://request.interfaces.auth.springtour.com" xmlns:tns="http://request.interfaces.auth.springtour.com" xmlns:ns0="http://util.app.springtour.com">
+      <xsd:import namespace="http://util.app.springtour.com"/>
+      <xsd:complexType name="CommonCityQuery">
+        <xsd:complexContent>
+          <xsd:extension base="ns0:GeneralRequest">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="displayRowNum" nillable="true" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="idOrName" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CommonCompanyQuery">
+        <xsd:complexContent>
+          <xsd:extension base="ns0:GeneralRequest">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="displayRowNum" nillable="true" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="idOrName" nillable="true" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="type" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CommonUserQuery">
+        <xsd:complexContent>
+          <xsd:extension base="ns0:GeneralRequest">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="displayRowNum" nillable="true" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="idOrName" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://interfaces.auth.springtour.com/" xmlns:tns="http://interfaces.auth.springtour.com/" xmlns:ns1="http://response.interfaces.auth.springtour.com" xmlns:ns0="http://request.interfaces.auth.springtour.com">
+      <xsd:import namespace="http://request.interfaces.auth.springtour.com"/>
+      <xsd:import namespace="http://response.interfaces.auth.springtour.com"/>
+      <xsd:complexType name="ArrayOfString">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="string" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="queryUser" type="tns:queryUser"/>
+      <xsd:complexType name="queryUser">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:CommonUserQuery"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="queryUserResponse" type="tns:queryUserResponse"/>
+      <xsd:complexType name="queryUserResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="return" type="ns1:CommonUserQueryResponse"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="queryCompany" type="tns:queryCompany"/>
+      <xsd:complexType name="queryCompany">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:CommonCompanyQuery"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="queryCompanyResponse" type="tns:queryCompanyResponse"/>
+      <xsd:complexType name="queryCompanyResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="return" type="ns1:CommonCompanyQueryResponse"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="queryCity" type="tns:queryCity"/>
+      <xsd:complexType name="queryCity">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="arg0" type="ns0:CommonCityQuery"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="queryCityResponse" type="tns:queryCityResponse"/>
+      <xsd:complexType name="queryCityResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="return" type="ns1:CityQueryResponse"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://util.app.springtour.com" xmlns:tns="http://util.app.springtour.com" xmlns:ns1="http://shared.app.springtour.com" xmlns:ns0="http://interfaces.auth.springtour.com/">
+      <xsd:import namespace="http://interfaces.auth.springtour.com/"/>
+      <xsd:import namespace="http://shared.app.springtour.com"/>
+      <xsd:complexType name="PaginationDTO">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="currentPage" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="end" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="pageSize" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="start" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="totalCount" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="MessageDTO">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="constraintViolations" nillable="true" type="ns0:ArrayOfString"/>
+          <xsd:element minOccurs="0" name="key" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="messageText" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="placeHolderList" nillable="true" type="ns0:ArrayOfString"/>
+          <xsd:element minOccurs="0" name="placeHolderMessage" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GeneralResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="messageDTO" nillable="true" type="tns:MessageDTO"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CommandDTO">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="appId" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="companyId" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="companyName" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="departmentId" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="departmentName" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="ip" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="operateUser" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="operateUserInfo" nillable="true" type="ns1:User"/>
+          <xsd:element minOccurs="0" name="time" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="user" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="userName" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="userTrueName" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GeneralRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="commandDTO" nillable="true" type="tns:CommandDTO"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://dto.interfaces.auth.springtour.com" xmlns:tns="http://dto.interfaces.auth.springtour.com">
+      <xsd:complexType name="CompanyDTO">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="address" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="city" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="cityName" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="code" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="contactor" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="createTime" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="createUser" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="guid" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="id" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="isValid" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="modifyTime" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="modifyUser" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="name" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="shortName" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="tel" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="type" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="zip" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CityDTO">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="code" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="continentId" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="countryId" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="enable" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="encode" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="flag" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="id" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="name" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="paraId" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="pinyin" nillable="true" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="provinceId" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfCompanyDTO">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="CompanyDTO" nillable="true" type="tns:CompanyDTO"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfCityDTO">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="CityDTO" nillable="true" type="tns:CityDTO"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://response.interfaces.auth.springtour.com" xmlns:tns="http://response.interfaces.auth.springtour.com" xmlns:ns2="http://dto.common.app.springtour.com" xmlns:ns1="http://dto.interfaces.auth.springtour.com" xmlns:ns0="http://util.app.springtour.com">
+      <xsd:import namespace="http://dto.interfaces.auth.springtour.com"/>
+      <xsd:import namespace="http://util.app.springtour.com"/>
+      <xsd:import namespace="http://dto.common.app.springtour.com"/>
+      <xsd:complexType name="CommonCompanyQueryResponse">
+        <xsd:complexContent>
+          <xsd:extension base="ns0:GeneralResponse">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="companyList" nillable="true" type="ns1:ArrayOfCompanyDTO"/>
+              <xsd:element minOccurs="0" name="paginationDTO" nillable="true" type="ns0:PaginationDTO"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CommonUserQueryResponse">
+        <xsd:complexContent>
+          <xsd:extension base="ns0:GeneralResponse">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="userDTOList" nillable="true" type="ns2:ArrayOfUserDTO"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="CityQueryResponse">
+        <xsd:complexContent>
+          <xsd:extension base="ns0:GeneralResponse">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="cityDTOList" nillable="true" type="ns1:ArrayOfCityDTO"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="queryCityResponse">
+    <wsdl:part element="ns1:queryCityResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryUser">
+    <wsdl:part element="ns1:queryUser" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryUserResponse">
+    <wsdl:part element="ns1:queryUserResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryCity">
+    <wsdl:part element="ns1:queryCity" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryCompany">
+    <wsdl:part element="ns1:queryCompany" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryCompanyResponse">
+    <wsdl:part element="ns1:queryCompanyResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CommonMessageServiceFacade">
+    <wsdl:operation name="queryUser">
+      <wsdl:input message="ns1:queryUser" name="queryUser"></wsdl:input>
+      <wsdl:output message="ns1:queryUserResponse" name="queryUserResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryCompany">
+      <wsdl:input message="ns1:queryCompany" name="queryCompany"></wsdl:input>
+      <wsdl:output message="ns1:queryCompanyResponse" name="queryCompanyResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryCity">
+      <wsdl:input message="ns1:queryCity" name="queryCity"></wsdl:input>
+      <wsdl:output message="ns1:queryCityResponse" name="queryCityResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.131.8.61:8080/cms/cxf/webservices/commonMessageService</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="queryCity" bindingOperationName="queryCity" type="Request-Response" outputName="queryCityResponse" inputName="queryCity" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://MS-20160324LCMI:8080/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.auth.springtour.com/" xmlns:util="http://util.app.springtour.com" xmlns:shar="http://shared.app.springtour.com" xmlns:req="http://request.interfaces.auth.springtour.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:queryCity>
+         <!--Optional:-->
+         <int:arg0>
+            <!--Optional:-->
+            <util:commandDTO>
+               <!--Optional:-->
+               <util:appId>?</util:appId>
+               <!--Optional:-->
+               <util:companyId>?</util:companyId>
+               <!--Optional:-->
+               <util:companyName>?</util:companyName>
+               <!--Optional:-->
+               <util:departmentId></util:departmentId>
+               <!--Optional:-->
+               <util:departmentName>?</util:departmentName>
+               <!--Optional:-->
+               <util:ip>?</util:ip>
+               <!--Optional:-->
+               <util:operateUser>?</util:operateUser>
+               <!--Optional:-->
+               <util:operateUserInfo>
+                  <!--Optional:-->
+                  <shar:ip>?</shar:ip>
+                  <!--Optional:-->
+                  <shar:userId>?</shar:userId>
+                  <!--Optional:-->
+                  <shar:userName>?</shar:userName>
+                  <!--Optional:-->
+                  <shar:userTrueName>?</shar:userTrueName>
+               </util:operateUserInfo>
+               <!--Optional:-->
+               <util:time>?</util:time>
+               <!--Optional:-->
+               <util:user>?</util:user>
+               <!--Optional:-->
+               <util:userName>?</util:userName>
+               <!--Optional:-->
+               <util:userTrueName>?</util:userTrueName>
+            </util:commandDTO>
+            <!--Optional:-->
+            <req:displayRowNum>?</req:displayRowNum>
+            <!--Optional:-->
+            <req:idOrName>?</req:idOrName>
+         </int:arg0>
+      </int:queryCity>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://internal.interfaces.auth.springtour.com/CommonMessageServiceFacade/queryCity"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.131.8.61:8080/cms/cxf/webservices/commonMessageService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.auth.springtour.com/" xmlns:util="http://util.app.springtour.com" xmlns:shar="http://shared.app.springtour.com" xmlns:req="http://request.interfaces.auth.springtour.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:queryCity>
+         <!--Optional:-->
+         <int:arg0>
+            <!--Optional:-->
+            <util:commandDTO>
+               <!--Optional:-->
+               <util:appId>?</util:appId>
+               <!--Optional:-->
+               <util:companyId>?</util:companyId>
+               <!--Optional:-->
+               <util:companyName>?</util:companyName>
+               <!--Optional:-->
+               <util:departmentId>?</util:departmentId>
+               <!--Optional:-->
+               <util:departmentName>?</util:departmentName>
+               <!--Optional:-->
+               <util:ip>?</util:ip>
+               <!--Optional:-->
+               <util:operateUser>?</util:operateUser>
+               <!--Optional:-->
+               <util:operateUserInfo>
+                  <!--Optional:-->
+                  <shar:ip>?</shar:ip>
+                  <!--Optional:-->
+                  <shar:userId>?</shar:userId>
+                  <!--Optional:-->
+                  <shar:userName>?</shar:userName>
+                  <!--Optional:-->
+                  <shar:userTrueName>?</shar:userTrueName>
+               </util:operateUserInfo>
+               <!--Optional:-->
+               <util:time>?</util:time>
+               <!--Optional:-->
+               <util:user>?</util:user>
+               <!--Optional:-->
+               <util:userName>?</util:userName>
+               <!--Optional:-->
+               <util:userTrueName>?</util:userTrueName>
+            </util:commandDTO>
+            <!--Optional:-->
+            <req:displayRowNum>?</req:displayRowNum>
+            <!--Optional:-->
+            <req:idOrName>?</req:idOrName>
+         </int:arg0>
+      </int:queryCity>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://internal.interfaces.auth.springtour.com/CommonMessageServiceFacade/queryCity"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="queryCompany" bindingOperationName="queryCompany" type="Request-Response" outputName="queryCompanyResponse" inputName="queryCompany" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.131.8.61:8080/cms/cxf/webservices/commonMessageService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.auth.springtour.com/" xmlns:util="http://util.app.springtour.com" xmlns:shar="http://shared.app.springtour.com" xmlns:req="http://request.interfaces.auth.springtour.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:queryCompany>
+         <!--Optional:-->
+         <int:arg0>
+            <!--Optional:-->
+            <util:commandDTO>
+               <!--Optional:-->
+               <util:appId>?</util:appId>
+               <!--Optional:-->
+               <util:companyId>?</util:companyId>
+               <!--Optional:-->
+               <util:companyName>?</util:companyName>
+               <!--Optional:-->
+               <util:departmentId>?</util:departmentId>
+               <!--Optional:-->
+               <util:departmentName>?</util:departmentName>
+               <!--Optional:-->
+               <util:ip>?</util:ip>
+               <!--Optional:-->
+               <util:operateUser>?</util:operateUser>
+               <!--Optional:-->
+               <util:operateUserInfo>
+                  <!--Optional:-->
+                  <shar:ip>?</shar:ip>
+                  <!--Optional:-->
+                  <shar:userId>?</shar:userId>
+                  <!--Optional:-->
+                  <shar:userName>?</shar:userName>
+                  <!--Optional:-->
+                  <shar:userTrueName>?</shar:userTrueName>
+               </util:operateUserInfo>
+               <!--Optional:-->
+               <util:time>?</util:time>
+               <!--Optional:-->
+               <util:user>?</util:user>
+               <!--Optional:-->
+               <util:userName>?</util:userName>
+               <!--Optional:-->
+               <util:userTrueName>?</util:userTrueName>
+            </util:commandDTO>
+            <!--Optional:-->
+            <req:displayRowNum>?</req:displayRowNum>
+            <!--Optional:-->
+            <req:idOrName>?</req:idOrName>
+            <!--Optional:-->
+            <req:type>?</req:type>
+         </int:arg0>
+      </int:queryCompany>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://internal.interfaces.auth.springtour.com/CommonMessageServiceFacade/queryCompany"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="queryUser" bindingOperationName="queryUser" type="Request-Response" outputName="queryUserResponse" inputName="queryUser" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://MS-20160324LCMI:8080/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.auth.springtour.com/" xmlns:util="http://util.app.springtour.com" xmlns:shar="http://shared.app.springtour.com" xmlns:req="http://request.interfaces.auth.springtour.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:queryUser>
+         <!--Optional:-->
+         <int:arg0>
+            <!--Optional:-->
+            <util:commandDTO>
+               <!--Optional:-->
+               <util:appId>?</util:appId>
+               <!--Optional:-->
+               <util:companyId>?</util:companyId>
+               <!--Optional:-->
+               <util:companyName>?</util:companyName>
+               <!--Optional:-->
+               <util:departmentId>?</util:departmentId>
+               <!--Optional:-->
+               <util:departmentName>?</util:departmentName>
+               <!--Optional:-->
+               <util:ip>?</util:ip>
+               <!--Optional:-->
+               <util:operateUser>?</util:operateUser>
+               <!--Optional:-->
+               <util:operateUserInfo>
+                  <!--Optional:-->
+                  <shar:ip>?</shar:ip>
+                  <!--Optional:-->
+                  <shar:userId>?</shar:userId>
+                  <!--Optional:-->
+                  <shar:userName>?</shar:userName>
+                  <!--Optional:-->
+                  <shar:userTrueName>?</shar:userTrueName>
+               </util:operateUserInfo>
+               <!--Optional:-->
+               <util:time>?</util:time>
+               <!--Optional:-->
+               <util:user>?</util:user>
+               <!--Optional:-->
+               <util:userName>?</util:userName>
+               <!--Optional:-->
+               <util:userTrueName>?</util:userTrueName>
+            </util:commandDTO>
+            <!--Optional:-->
+            <req:displayRowNum>?</req:displayRowNum>
+            <!--Optional:-->
+            <req:idOrName>?</req:idOrName>
+         </int:arg0>
+      </int:queryUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://internal.interfaces.auth.springtour.com/CommonMessageServiceFacade/queryUser"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase 1" searchProperties="true"><con:settings/><con:testStep type="request" name="queryCompany - Request 1" id="c7eed960-eacf-43af-80fe-238217ae9eaf"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CommonMessageFacadeImplServiceSoapBinding</con:interface><con:operation>queryCompany</con:operation><con:request name="queryCompany - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.131.8.61:8080/cms/cxf/webservices/commonMessageService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.auth.springtour.com/" xmlns:util="http://util.app.springtour.com" xmlns:shar="http://shared.app.springtour.com" xmlns:req="http://request.interfaces.auth.springtour.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:queryCompany>
+         <!--Optional:-->
+         <int:arg0>
+            <!--Optional:-->
+            <util:commandDTO>
+               <!--Optional:-->
+               <util:appId>?</util:appId>
+               <!--Optional:-->
+               <util:companyId>?</util:companyId>
+               <!--Optional:-->
+               <util:companyName>?</util:companyName>
+               <!--Optional:-->
+               <util:departmentId>?</util:departmentId>
+               <!--Optional:-->
+               <util:departmentName>?</util:departmentName>
+               <!--Optional:-->
+               <util:ip>?</util:ip>
+               <!--Optional:-->
+               <util:operateUser>?</util:operateUser>
+               <!--Optional:-->
+               <util:operateUserInfo>
+                  <!--Optional:-->
+                  <shar:ip>?</shar:ip>
+                  <!--Optional:-->
+                  <shar:userId>?</shar:userId>
+                  <!--Optional:-->
+                  <shar:userName>?</shar:userName>
+                  <!--Optional:-->
+                  <shar:userTrueName>?</shar:userTrueName>
+               </util:operateUserInfo>
+               <!--Optional:-->
+               <util:time>?</util:time>
+               <!--Optional:-->
+               <util:user>?</util:user>
+               <!--Optional:-->
+               <util:userName>?</util:userName>
+               <!--Optional:-->
+               <util:userTrueName>?</util:userTrueName>
+            </util:commandDTO>
+            <!--Optional:-->
+            <req:displayRowNum>?</req:displayRowNum>
+            <!--Optional:-->
+            <req:idOrName>?</req:idOrName>
+            <!--Optional:-->
+            <req:type>?</req:type>
+         </int:arg0>
+      </int:queryCompany>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://internal.interfaces.auth.springtour.com/CommonMessageServiceFacade/queryCompany"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="queryCompany - Request 1 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CommonMessageFacadeImplServiceSoapBinding</con:interface><con:operation>queryCompany</con:operation><con:request name="queryCompany - Request 1 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType=""><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.131.8.61:8080/cms/cxf/webservices/commonMessageService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interfaces.auth.springtour.com/" xmlns:util="http://util.app.springtour.com" xmlns:shar="http://shared.app.springtour.com" xmlns:req="http://request.interfaces.auth.springtour.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:queryCompany>
+         <!--Optional:-->
+         <int:arg0>
+            <!--Optional:-->
+            <util:commandDTO>
+               <!--Optional:-->
+               <util:appId>?</util:appId>
+               <!--Optional:-->
+               <util:companyId>?</util:companyId>
+               <!--Optional:-->
+               <util:companyName>?</util:companyName>
+               <!--Optional:-->
+               <util:departmentId>?</util:departmentId>
+               <!--Optional:-->
+               <util:departmentName>?</util:departmentName>
+               <!--Optional:-->
+               <util:ip>?</util:ip>
+               <!--Optional:-->
+               <util:operateUser>?</util:operateUser>
+               <!--Optional:-->
+               <util:operateUserInfo>
+                  <!--Optional:-->
+                  <shar:ip>?</shar:ip>
+                  <!--Optional:-->
+                  <shar:userId>?</shar:userId>
+                  <!--Optional:-->
+                  <shar:userName>?</shar:userName>
+                  <!--Optional:-->
+                  <shar:userTrueName>?</shar:userTrueName>
+               </util:operateUserInfo>
+               <!--Optional:-->
+               <util:time>?</util:time>
+               <!--Optional:-->
+               <util:user>?</util:user>
+               <!--Optional:-->
+               <util:userName>?</util:userName>
+               <!--Optional:-->
+               <util:userTrueName>?</util:userTrueName>
+            </util:commandDTO>
+            <!--Optional:-->
+            <req:displayRowNum>?</req:displayRowNum>
+            <!--Optional:-->
+            <req:idOrName>?</req:idOrName>
+            <!--Optional:-->
+            <req:type>?</req:type>
+         </int:arg0>
+      </int:queryCompany>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://internal.interfaces.auth.springtour.com/CommonMessageServiceFacade/queryCompany"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:loadTest name="LoadTest 1"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting></con:settings><con:threadCount>5</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:properties/><con:securityTest name="SecurityTest 1" failOnError="true"><con:settings/><con:properties/></con:securityTest></con:testCase><con:properties/></con:testSuite><con:mockService port="8080" path="/" host="MS-20160324LCMI" name="MockService 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="queryCity" interface="CommonMessageFacadeImplServiceSoapBinding" operation="queryCity"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <soap:Fault>
+         <faultcode>soap:Client</faultcode>
+         <faultstring>hello343244</faultstring>
+      </soap:Fault>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://internal.interfaces.auth.springtour.com/CommonMessageServiceFacade/queryCityResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="queryCompany" interface="CommonMessageFacadeImplServiceSoapBinding" operation="queryCompany"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <soap:Fault>
+         <faultcode>soap:Client</faultcode>
+         <faultstring>No write method for property {http://util.app.springtour.com}operateUser in class com.springtour.app.util.CommandDTO</faultstring>
+      </soap:Fault>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://internal.interfaces.auth.springtour.com/CommonMessageServiceFacade/queryCompanyResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="queryUser" interface="CommonMessageFacadeImplServiceSoapBinding" operation="queryUser"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <soap:Fault>
+         <faultcode>soap:Client</faultcode>
+         <faultstring>33333</faultstring>
+      </soap:Fault>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://internal.interfaces.auth.springtour.com/CommonMessageServiceFacade/queryUserResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

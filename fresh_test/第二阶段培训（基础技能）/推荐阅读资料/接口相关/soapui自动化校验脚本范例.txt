@@ -1,0 +1,38 @@
+【示例1】查询数据库获取验证码--oracle数据库（不同的数据库使用不同的jdbc链接）
+import groovy.sql.Sql
+
+//定义数据库连接参数：地址、端口、sid、用户名、密码
+def db_ip="192.168.210.41"
+def db_port="1521"
+def db_sid="spring"
+def db_name="cqsale"
+def db_pwd="cqsales"
+
+//获取测试步骤参数phone
+def props=testRunner.testCase.getTestStepByName("注册信息")
+def phone=props.getPropertyValue("regPhone")
+
+//执行查询sql，返回查询结果第一行赋值给row
+def sqlStr="select * from TB_SMS_DOWN where mobile = '${phone}'  order by CREATE_TIME desc"
+def sql=Sql.newInstance("jdbc:oracle:thin:@${db_ip}:${db_port}:${db_sid}",db_name,db_pwd,"oracle.jdbc.driver.OracleDriver")
+def row=sql.firstRow(sqlStr)
+
+//如果row不为空则，把查询到的验证码赋值给测试步骤“注册信息”里的参数“validateCode”，给下一步操作使用
+if(null != row){
+	def content = row.CONTENT
+    def index=content.indexOf("验证码:")
+    if(index != -1){
+     	props.setPropertyValue("validateCode",content.substring(index+4,index+10))
+    }  
+}else{
+	return "没有收到短信验证码"
+}
+
+【示例2】获取接口调用结果校验判断语句
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context )
+def holder = groovyUtils.getXmlHolder( "接口调用步骤名称#Response" )
+def sessioninfo = holder.getNodeValue("//sessioninfo") //获取xml节点值
+log.info(sessioninfo)
+assert sessioninfo.equals("OK")  //断言校验判断是否等于OK
+
+
